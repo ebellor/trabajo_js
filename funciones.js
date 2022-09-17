@@ -1,9 +1,11 @@
-let carro = []
 let carroTmp = []
+let total = []
 
 function agregarCarro() {
-    carro = []
-let suma = 0
+   
+
+    carroTmp = []
+    let suma = 0
     lista = document.tipoTexto.size
     elegido = lista.selectedIndex
     opcion = lista.options[elegido]
@@ -12,8 +14,10 @@ if (eleccion == 0) {
     error()
     
 } else {
-    carro.push(productos[eleccion].nombre,productos[eleccion].precio)
+    carroTmp.push(eleccion)
+ 
 suma= suma+productos[eleccion].precio
+
     
 }
 
@@ -26,7 +30,7 @@ suma= suma+productos[eleccion].precio
         error()
         
     } else {
-        carro.push(productos[eleccion].nombre,productos[eleccion].precio)
+        carroTmp.push(eleccion)
     suma= suma+productos[eleccion].precio
         
     }
@@ -38,7 +42,7 @@ suma= suma+productos[eleccion].precio
         error()
         
     } else {
-        carro.push(productos[eleccion].nombre,productos[eleccion].precio)
+        carroTmp.push(eleccion)
     suma= suma+productos[eleccion].precio
         
     }
@@ -51,7 +55,7 @@ suma= suma+productos[eleccion].precio
         error()
         
     } else {
-        carro.push(productos[eleccion].nombre,productos[eleccion].precio)
+        carroTmp.push(eleccion)
     suma= suma+productos[eleccion].precio
         
     }
@@ -64,7 +68,7 @@ suma= suma+productos[eleccion].precio
         error()
         
     } else {
-        carro.push(productos[eleccion].nombre,productos[eleccion].precio)
+        carroTmp.push(eleccion)
     suma= suma+productos[eleccion].precio
         
     }
@@ -78,7 +82,7 @@ suma= suma+productos[eleccion].precio
         error()
         
     } else {
-        carro.push(productos[eleccion].nombre,productos[eleccion].precio)
+        carroTmp.push(eleccion)
     suma= suma+productos[eleccion].precio
         
     }
@@ -91,12 +95,24 @@ suma= suma+productos[eleccion].precio
         error()
         
     } else {
-        carro.push(productos[eleccion].nombre,productos[eleccion].precio)
+        carroTmp.push(eleccion)
     suma= suma+productos[eleccion].precio
+        total[0] = suma
+  
+    }
+
+
+
+}
+
+
+function pagarPedido() {
+
+    agregarCarro()
 
     Swal.fire({
         title: 'Su pedido es por',
-        text: `$ ${suma}`,
+        text: `$ ${total[0]}`,
         icon: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#3085d6',
@@ -111,7 +127,7 @@ suma= suma+productos[eleccion].precio
                 confirmButtonText: 'Crédito',
                 denyButtonText: `Dédito`,
               }).then((result) => {
-                /* Read more about isConfirmed, isDenied below */
+                 
                 if (result.isConfirmed) {
                   Swal.fire('Su pago con crédito a sido aceptado.', '', 'success')
                 } else if (result.isDenied) {
@@ -122,12 +138,33 @@ suma= suma+productos[eleccion].precio
         }
       })
         
+    
     }
-   
   
-    }
 
-  
+ 
+function mostarCarro() {
+
+    agregarCarro()
+
+    const lista = document.querySelector("#carrito");
+
+    let listado = document.createElement("p");
+    
+    listado.innerHTML = `    ${textoVer[0]} ${productos[carroTmp[0]].nombre}    $ ${productos[carroTmp[0]].precio}<br>
+        ${textoVer[1]} ${productos[carroTmp[1]].nombre}    $ ${productos[carroTmp[1]].precio}<br>
+        ${textoVer[2]} ${productos[carroTmp[2]].nombre}    $ ${productos[carroTmp[2]].precio}<br>
+        ${textoVer[3]} ${productos[carroTmp[3]].nombre}    $ ${productos[carroTmp[3]].precio}<br>
+        ${textoVer[4]} ${productos[carroTmp[4]].nombre}    $ ${productos[carroTmp[4]].precio}<br>
+        ${textoVer[5]} ${productos[carroTmp[5]].nombre}    $ ${productos[carroTmp[5]].precio}<br>
+        ${textoVer[6]} ${productos[carroTmp[6]].nombre}    $ ${productos[carroTmp[6]].precio}<br>
+        <h2>Su pedido es por:    $ ${total}.-</h2><br>`
+    
+      lista.appendChild(listado);
+}
+
+
+ 
 function error() {
 
     Swal.fire({
@@ -139,4 +176,3 @@ function error() {
     
 })
 }
-
