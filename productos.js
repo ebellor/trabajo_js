@@ -36,3 +36,5 @@ const productos = [
     {familia: "vegetal" , tipo: "vegetal9", nombre: "Pepinillos", precio: 250},
     ]
 
+    let textoVer = ["Tamaño de Pizza :" , "Tipo de Masa :" , "Tipo de Salsa :" , "Cantidad de Salsa :" , "Cantidad de Queso :" , "Tipo de carne : " , "Tipo de vegetales :"]
+
