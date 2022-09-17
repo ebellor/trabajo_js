@@ -13,9 +13,6 @@
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.32/dist/sweetalert2.all.min.js"></script>
 
-<script src="./productos.js"></script>
-<script src="./funciones.js"></script>
-
 <form name="tipoTexto" action="#">
 
     <table style="text-align: left; background-color: rgb(253, 204, 127); width: 65%; ;" border="0" cellpadding="2" cellspacing="2">
@@ -141,35 +138,37 @@
   <option value="32">Pepinillos</option>
 </select>
 </td>
-<td style="text-align: center;">
-
-  <div class="form-check" style="text-align: left;">
-    <input class="form-check-input" type="checkbox" value="" id="extra1">
-    <label class="form-check-label" for="flexCheckDefault" style="color: rgb(253, 204, 127)">
-      Jalapeño
-    </label>
-  </div>
-  <div class="form-check" style="text-align: left;">
-    <input class="form-check-input" type="checkbox" value="" id="extra2">
-    <label class="form-check-label" for="flexCheckChecked" style="color: rgb(253, 204, 127)">
-      Queso Azul
-    </label>
-  </div>
-  <div class="form-check" style="text-align: left;">
-    <input class="form-check-input" type="checkbox" value="" id="extra3">
-    <label class="form-check-label" for="flexCheckChecked" style="color: rgb(253, 204, 127)">
-      Parmesano y romano
-    </label>
-  </div>
-
-
-</td>
+<td style="text-align: center;">extra</td>
 </tr>
 <tr></tr>
 <td></td>
-<td colspan="2" rowspan="1">  <center><input name="pulsar" onclick="agregarCarro()"
-    value="Hacer pedido..." type="button" class="btn btn-primary">
+<td colspan="2" rowspan="1">  <center>
+
+  <input name="pulsar1" onclick="pagarPedido()"
+    value="Pagar" type="button" class="btn btn-primary">
+  
+  <input name="pulsar2" onclick="mostarCarro()"
+    value="Ver pedido..." type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
      </center>
+     
+     <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="staticBackdropLabel">Pedido</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <FONT FACE="verdana"><div id="carrito"></div></FONT>
+      
+          
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+            
+          </div>
+        </div>
+      </div>
+
+
    </td>
    
  <td></td>
@@ -178,7 +177,12 @@
 </table>
 <br>
 </div>
+
 </form>
+<script src="./productos.js"></script>
+
+<script src="./funciones.js"></script>
+
 
 
 </body>
