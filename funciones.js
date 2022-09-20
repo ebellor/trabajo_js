@@ -1,5 +1,21 @@
+
 let carroTmp = []
+
 let total = []
+
+const botonPagar = document.querySelector("#pagar")
+botonPagar.onclick= function() {
+ 
+pagarPedido()
+
+}
+const botonVer = document.querySelector("#ver")
+botonVer.onclick= function() {
+ 
+    mostarCarro()
+
+}
+
 
 function agregarCarro() {
    
@@ -102,7 +118,6 @@ suma= suma+productos[eleccion].precio
     }
 
 
-
 }
 
 
@@ -142,29 +157,34 @@ function pagarPedido() {
     }
   
 
- 
-function mostarCarro() {
+    function mostarCarro() {
 
-    agregarCarro()
-
-    const lista = document.querySelector("#carrito");
-
-    let listado = document.createElement("p");
+        agregarCarro()
     
-    listado.innerHTML = `    ${textoVer[0]} ${productos[carroTmp[0]].nombre}    $ ${productos[carroTmp[0]].precio}<br>
-        ${textoVer[1]} ${productos[carroTmp[1]].nombre}    $ ${productos[carroTmp[1]].precio}<br>
-        ${textoVer[2]} ${productos[carroTmp[2]].nombre}    $ ${productos[carroTmp[2]].precio}<br>
-        ${textoVer[3]} ${productos[carroTmp[3]].nombre}    $ ${productos[carroTmp[3]].precio}<br>
-        ${textoVer[4]} ${productos[carroTmp[4]].nombre}    $ ${productos[carroTmp[4]].precio}<br>
-        ${textoVer[5]} ${productos[carroTmp[5]].nombre}    $ ${productos[carroTmp[5]].precio}<br>
-        ${textoVer[6]} ${productos[carroTmp[6]].nombre}    $ ${productos[carroTmp[6]].precio}<br>
-        <h2>Su pedido es por:    $ ${total}.-</h2><br>`
+        
+        for (i=0 ; i<= 6 ; i++) {
     
-      lista.appendChild(listado);
-}
+        const lista = document.querySelector("#carrito");
+    
+        let listado = document.createElement("div");
+        
+        listado.innerHTML = `    ${textoVer[i]}     ${productos[carroTmp[i]].nombre}    $ ${productos[carroTmp[i]].precio} <br>`
+        
+          lista.appendChild(listado);
+    
+        }
+    
+        const lista = document.querySelector("#carrito");
+    
+        let listado = document.createElement("div");
+        
+        listado.innerHTML = `<h2>Su pedido es por:    $ ${total}.-</h2><br>`
+        
+          lista.appendChild(listado);
 
+        
+    }
 
- 
 function error() {
 
     Swal.fire({
