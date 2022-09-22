@@ -1,6 +1,6 @@
 //Productos
 const productos = [
-    {familia: "nada" , tipo: "nada", nombre: "nada", precio: 0},
+    {familia: "" , tipo: "", nombre: "", precio: 0},
     {familia: "sizeMasa" , tipo: "sizeMasa1", nombre: "Mediana", precio: 1000},
     {familia: "sizeMasa" , tipo: "sizeMasa2", nombre: "Familiar", precio: 2000},
     {familia: "sizeMasa" , tipo: "sizeMasa3", nombre: "Extra Grande", precio: 3000},
