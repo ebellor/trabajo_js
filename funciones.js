@@ -1,198 +1,165 @@
+let carro1 = []
+let carro2 = []
+let carro3 = []
+let carro4 = []
+let carro5 = []
+let carro6 = []
+let carro7 = []
+let suma = 0
 
-let carroTmp = []
+function agregar1() {
+  carro1 = []
+  let opcion = document.getElementById("size").value;
+carro1.push(opcion)
 
-let total = []
+ok()
+let recuDato = JSON.parse(localStorage.getItem("pedido"))
 
-const botonPagar = document.querySelector("#pagar")
-botonPagar.onclick= function() {
- 
-pagarPedido()
-
-}
-const botonVer = document.querySelector("#ver")
-botonVer.onclick= function() {
- 
-    mostarCarro()
-
-}
-
-
-function agregarCarro() {
-   
-
-    carroTmp = []
-    let suma = 0
-    lista = document.tipoTexto.size
-    elegido = lista.selectedIndex
-    opcion = lista.options[elegido]
-    eleccion = eval(`${opcion.value}`)
-if (eleccion == 0) {
-    error()
-    
-} else {
-    carroTmp.push(eleccion)
- 
-suma= suma+productos[eleccion].precio
-
-    
+let valor1 = Number(`${productos[recuDato[0]].precio}`)
+document.getElementById("item1").innerHTML =`  ${productos[recuDato[0]].nombre}`
+document.getElementById("valor1").innerHTML =Intl.NumberFormat('es-CL', {minimumFractionDigits: 0}).format(valor1)
+suma = suma+ Number(`${productos[recuDato[0]].precio}`)
+document.getElementById("suma").innerHTML =Intl.NumberFormat('es-CL', {minimumFractionDigits: 0}).format(suma)
 }
 
+function agregar2() {
+  carro2 = []
+  let opcion = document.getElementById("tipo").value;
+carro2.push(opcion)
 
-    lista = document.tipoTexto.tipo
-    elegido = lista.selectedIndex
-    opcion = lista.options[elegido]
-    eleccion = eval(`${opcion.value}`)
-    if (eleccion == 0) {
-        error()
-        
-    } else {
-        carroTmp.push(eleccion)
-    suma= suma+productos[eleccion].precio
-        
-    }
-    lista = document.tipoTexto.salsa
-    elegido = lista.selectedIndex
-    opcion = lista.options[elegido]
-    eleccion = eval(`${opcion.value}`)
-    if (eleccion == 0) {
-        error()
-        
-    } else {
-        carroTmp.push(eleccion)
-    suma= suma+productos[eleccion].precio
-        
-    }
+ok()
+let recuDato = JSON.parse(localStorage.getItem("pedido"))
+let valor2 = Number(`${productos[recuDato[1]].precio}`)
+document.getElementById("item2").innerHTML =`  ${productos[recuDato[1]].nombre}`
+document.getElementById("valor2").innerHTML =Intl.NumberFormat('es-CL', {minimumFractionDigits: 0}).format(valor2)
+suma = suma+ Number(`${productos[recuDato[1]].precio}`)
+document.getElementById("suma").innerHTML =Intl.NumberFormat('es-CL', {minimumFractionDigits: 0}).format(suma)
+}
 
-    lista = document.tipoTexto.cantidadSalsa
-    elegido = lista.selectedIndex
-    opcion = lista.options[elegido]
-    eleccion = eval(`${opcion.value}`)
-    if (eleccion == 0) {
-        error()
-        
-    } else {
-        carroTmp.push(eleccion)
-    suma= suma+productos[eleccion].precio
-        
-    }
+function agregar3() {
+  carro3 = []
+  let opcion = document.getElementById("salsa").value;
+carro3.push(opcion)
 
-    lista = document.tipoTexto.queso
-    elegido = lista.selectedIndex
-    opcion = lista.options[elegido]
-    eleccion = eval(`${opcion.value}`)
-    if (eleccion == 0) {
-        error()
-        
-    } else {
-        carroTmp.push(eleccion)
-    suma= suma+productos[eleccion].precio
-        
-    }
+ok()
+let recuDato = JSON.parse(localStorage.getItem("pedido"))
+let valor3 = Number(`${productos[recuDato[2]].precio}`)
+document.getElementById("item3").innerHTML =`  ${productos[recuDato[2]].nombre}`
+        document.getElementById("valor3").innerHTML =Intl.NumberFormat('es-CL', {minimumFractionDigits: 0}).format(valor3)
+        suma = suma+ Number(`${productos[recuDato[2]].precio}`)
+        document.getElementById("suma").innerHTML =Intl.NumberFormat('es-CL', {minimumFractionDigits: 0}).format(suma)
+}
 
-    lista = document.tipoTexto.carne
-    elegido = lista.selectedIndex
-    opcion = lista.options[elegido]
-    eleccion = eval(`${opcion.value}`)
-    
-    if (eleccion == 0) {
-        error()
-        
-    } else {
-        carroTmp.push(eleccion)
-    suma= suma+productos[eleccion].precio
-        
-    }
+function agregar4() {
+  carro4 = []
+  let opcion = document.getElementById("cantidadSalsa").value;
+carro4.push(opcion)
 
-    lista = document.tipoTexto.vegetal
-    elegido = lista.selectedIndex
-    opcion = lista.options[elegido]
-    eleccion = eval(`${opcion.value}`)
-    if (eleccion == 0) {
-        error()
-        
-    } else {
-        carroTmp.push(eleccion)
-    suma= suma+productos[eleccion].precio
-        total[0] = suma
-  
-    }
+ok()
+let recuDato = JSON.parse(localStorage.getItem("pedido"))
+let valor4 = Number(`${productos[recuDato[3]].precio}`)
+document.getElementById("item4").innerHTML =`  ${productos[recuDato[3]].nombre}`
+        document.getElementById("valor4").innerHTML =Intl.NumberFormat('es-CL', {minimumFractionDigits: 0}).format(valor4)
+        suma = suma+ Number(`${productos[recuDato[3]].precio}`)
+        document.getElementById("suma").innerHTML =Intl.NumberFormat('es-CL', {minimumFractionDigits: 0}).format(suma)
+}
 
+function agregar5() {
+  carro5 = []
+  let opcion = document.getElementById("queso").value;
+carro5.push(opcion)
+ok()
+let recuDato = JSON.parse(localStorage.getItem("pedido"))
+let valor5 = Number(`${productos[recuDato[4]].precio}`)
+document.getElementById("item5").innerHTML =`  ${productos[recuDato[4]].nombre}`
+        document.getElementById("valor5").innerHTML =Intl.NumberFormat('es-CL', {minimumFractionDigits: 0}).format(valor5)
+        suma = suma+ Number(`${productos[recuDato[4]].precio}`)
+        document.getElementById("suma").innerHTML =Intl.NumberFormat('es-CL', {minimumFractionDigits: 0}).format(suma)
+}
+
+function agregar6() {
+  carro6 = []
+  let opcion = document.getElementById("carne").value;
+carro6.push(opcion)
+ok()
+let recuDato = JSON.parse(localStorage.getItem("pedido"))
+let valor6 = Number(`${productos[recuDato[5]].precio}`)
+document.getElementById("item6").innerHTML =`  ${productos[recuDato[5]].nombre}`
+document.getElementById("valor6").innerHTML =Intl.NumberFormat('es-CL', {minimumFractionDigits: 0}).format(valor6)
+suma = suma+ Number(`${productos[recuDato[5]].precio}`)
+document.getElementById("suma").innerHTML =Intl.NumberFormat('es-CL', {minimumFractionDigits: 0}).format(suma)
+}
+
+function agregar7() {
+  carro7 = []
+  let opcion = document.getElementById("vegetal").value;
+carro7.push(opcion)
+ok()
+let recuDato = JSON.parse(localStorage.getItem("pedido"))
+let valor7 = Number(`${productos[recuDato[6]].precio}`)
+document.getElementById("item7").innerHTML =`  ${productos[recuDato[6]].nombre}`
+document.getElementById("valor7").innerHTML =Intl.NumberFormat('es-CL', {minimumFractionDigits: 0}).format(valor7)
+suma = suma+ Number(`${productos[recuDato[6]].precio}`)
+document.getElementById("suma").innerHTML =Intl.NumberFormat('es-CL', {minimumFractionDigits: 0}).format(suma)
 
 }
 
+function ok() {
 
-function pagarPedido() {
-
-    agregarCarro()
-
-    Swal.fire({
-        title: 'Su pedido es por',
-        text: `$ ${total[0]}`,
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: '¿Desea pagar?'
-      }).then((result) => {
-        if (result.isConfirmed) {
-            Swal.fire({
-                title: '¿Cómo desea pagar?',
-                showDenyButton: true,
-                showCancelButton: true,
-                confirmButtonText: 'Crédito',
-                denyButtonText: `Dédito`,
-              }).then((result) => {
-                 
-                if (result.isConfirmed) {
-                  Swal.fire('Su pago con crédito a sido aceptado.', '', 'success')
-                } else if (result.isDenied) {
-                  Swal.fire('Su pago con débito a sido aceptado.', '', 'success')
-                }
-              })
-          
+    const Toast = Swal.mixin({
+        toast: true,
+        position: 'top-end',
+        showConfirmButton: false,
+        timer: 1500,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+          toast.addEventListener('mouseenter', Swal.stopTimer)
+          toast.addEventListener('mouseleave', Swal.resumeTimer)
         }
       })
-        
-    
-    }
-  
+      
+      Toast.fire({
+        icon: 'success',
+        title: 'Ok...su eleción fue agregada.'
+      })
 
-    function mostarCarro() {
+storageTmp()
 
-        agregarCarro()
-    
-        
-        for (i=0 ; i<= 6 ; i++) {
-    
-        const lista = document.querySelector("#carrito");
-    
-        let listado = document.createElement("div");
-        
-        listado.innerHTML = `    ${textoVer[i]}     ${productos[carroTmp[i]].nombre}    $ ${productos[carroTmp[i]].precio} <br>`
-        
-          lista.appendChild(listado);
-    
-        }
-    
-        const lista = document.querySelector("#carrito");
-    
-        let listado = document.createElement("div");
-        
-        listado.innerHTML = `<h2>Su pedido es por:    $ ${total}.-</h2><br>`
-        
-          lista.appendChild(listado);
-
-        
-    }
+}
 
 function error() {
 
-    Swal.fire({
-        //position: 'top-end',
-        icon: 'error',
-        title: 'Su pedido tiene problemas... \n Le faltan ingredientes.',
+    const Toast = Swal.mixin({
+        toast: true,
+        position: 'top-end',
         showConfirmButton: false,
-        timer: 2500
-    
-})
+        timer: 2500,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+          toast.addEventListener('mouseenter', Swal.stopTimer)
+          toast.addEventListener('mouseleave', Swal.resumeTimer)
+        }
+      })
+      
+      Toast.fire({
+        icon: 'warning',
+        title: 'Ups... te faltan ingredientes.'
+      })
+
+}
+
+function storageTmp() {
+c1 = carro1
+c2 = carro2
+c3 = carro3
+c4 = carro4
+c5 = carro5
+c6 = carro6
+c7 = carro7
+let carro0 = [c1,c2,c3,c4,c5,c6,c7]
+
+  const storageDatos = JSON.stringify(carro0)
+  
+  localStorage.setItem("pedido" , storageDatos)
+  
 }
