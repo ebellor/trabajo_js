@@ -321,7 +321,7 @@ console.log(totalValida,"tv")
 
 function pagarPedido() {
 if (validador[0]==7){
-console.log(validador)
+
 Swal.fire({
         title: 'Su pedido es por',
         text: `$ ${innerHTML =Intl.NumberFormat('es-CL', {minimumFractionDigits: 0}).format(sumaTotal)} `,
@@ -473,7 +473,7 @@ function error1() {
           
           Toast.fire({
             icon: 'warning',
-            title: 'Ups... debes elegir un tamaño para tu pizza.'
+            title: 'Ups... su pedido presenta problemas.'
           })
     
     }
