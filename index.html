@@ -9,18 +9,18 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.32/dist/sweetalert2.all.min.js"></script>
 
-<script src="./productos.js"></script>
-<script src="./funciones.js"></script>
+
+
 
 <form name="tipoTexto" action="#">
-<table style="text-align: left; background-color: rgb(253, 204, 127); width: 65%;" border="0" cellpadding="2" cellspacing="2">
+<table style="text-align: left; background-color: rgb(253, 204, 127); width: 1213px;" border="0" cellpadding="2" cellspacing="2">
 <tbody>
 <tr>
 <td style="text-align: right;"><img style="width: 117px; height: 155px;" alt="" src="./imagenes/monito.png"></td>
-<td style="font-family: Arial; color: black; text-align: center;">
+<td style="font-family: Arial; color: black; text-align: center; width: 951px;">
 <h1><big><big>Pizzeria "El Monito Sabrosón"</big></big></h1>
 </td>
-<td><img style="width: 117px; height: 155px;" alt="" src="./imagenes/monito.png"></td>
+<td style="width: 117px;"><img style="width: 117px; height: 155px;" alt="" src="./imagenes/monito.png"></td>
 </tr>
 </tbody>
 </table>
@@ -29,196 +29,167 @@
 <tr>
 <td>
 <center>
-<h2><img style="width: 20%;" alt="" src="imagenes/arma-tu-pizza-one-line-banner.png"></h2>
+<h2 style="width: 1208px;"><img style="width: 20%;" alt="" src="imagenes/arma-tu-pizza-one-line-banner.png"></h2>
 </center>
 </td>
 </tr>
 </tbody>
 </table>
 <br>
-<table style="text-align: left; width: 1040px; height: 172px;" border="0" cellpadding="2" cellspacing="2">
+<table style="text-align: left; font-family: Arial; color: rgb(255, 204, 102); width: 1219px; height: 534px;" border="0" cellpadding="2" cellspacing="2">
 <tbody>
 <tr>
-<td colspan="2" rowspan="1" style="width: 364px; text-align: center;"><span style="font-family: Arial; color: rgb(255, 204, 102);">Txt Ingredientes</span></td>
-<td style="width: 102px;"></td>
-<td style="color: rgb(255, 204, 102); text-align: center; font-family: Arial; width: 243px;" colspan="2" rowspan="1">Txt Pedido</td>
+<td colspan="2" rowspan="1" style="text-align: center;"><img style="width: 192px; height: 78px;" alt="" src="imagenes/ingredientes.png"><br></td>
+<td><img style="width: 178px; height: 72px;" alt="" src="imagenes/extra.png"></td>
+<td style="text-align: center; font-family: Arial; width: 243px;" colspan="2" rowspan="1">
+
+    <div id="pagar"><button id="pagar" type="button" class="btn btn-danger">Pagar Pedido...</button></div>
+
+    
+
+</td>
 </tr>
 <tr>
-<td style="width: 126px;"></td>
-<td style="width: 364px; text-align: center; color: rgb(255, 204, 102); font-family: Arial;">
+<td></td>
+<td>
 Elige el tamaño de tu PIZZA SABROSONA</td>
-<td style="width: 102px;"></td>
+<td style="text-align: center; width: 252px;"></td>
 <td colspan="2" rowspan="1" style="color: rgb(255, 204, 102); font-family: Arial; width: 243px;"></td>
 
 </tr>
 <tr>
-<td style="width: 126px;"></td>
-<td style="width: 364px; text-align: center; color: rgb(255, 204, 102); font-family: Arial;">
-    <select class="form-select" name="size" id="size" onchange="agregar1()">
-        <option value="0">-- Elije una opción -- </option>
-        <option value="1">$ 1.000. Mediana</option>
-        <option value="2">$ 2.000. Familiar</option>
-        <option value="3">$ 3.000. Estra Grande</option>
-    </select>
+<td style="width: 97px;"></td>
+<td style="text-align: center; color: rgb(255, 204, 102); font-family: Arial; width: 423px;">
+    <select class="form-select" id="size"></select>
+
 </td>
-<td style="width: 102px;"></td>
-<td style="text-align: right; width: 243px; background-color: rgb(246, 246, 246); font-weight: bold; font-family: Courier New,Courier,monospace; color: black;"><big>Pedido n°</big></td>
-<td style="width: 161px; background-color: rgb(246, 246, 246); font-weight: bold; font-family: Courier New,Courier,monospace; color: black;"><big>ramdom</big></td>
+<td style="text-align: center; width: 252px;"><select class="form-select" id="extra1"></select></td>
+<td style="text-align: right; width: 243px; background-color: rgb(246, 246, 246); font-weight: bold; font-family: Courier New,Courier,monospace; color: black;"><big>TICKET DE COMPRA N°</big></td>
+<td style="width: 161px; background-color: rgb(246, 246, 246); font-weight: bold; font-family: Courier New,Courier,monospace; color: black;" id="ticket"></td>
 </tr>
 <tr>
-<td style="width: 126px;"></td>
-<td style="width: 364px; text-align: center; color: rgb(255, 204, 102); font-family: Arial;">
+<td style="width: 97px;"></td>
+<td style="text-align: center; color: rgb(255, 204, 102); font-family: Arial; width: 423px;">
 ¿Qué masa SABROSONA quieres para tu PIZZA?</td>
-<td style="width: 102px;"></td>
-<td style="font-family: Courier New,Courier,monospace; width: 243px; background-color: rgb(246, 246, 246); font-weight: bold; color: black;"><big></big></td>
-<td style="width: 161px; font-family: Courier New,Courier,monospace; text-align: right; background-color: rgb(246, 246, 246); font-weight: bold; color: black;"><big></big></td>
+<td style="text-align: center; width: 252px;"></td>
+<td style="font-family: Courier New,Courier,monospace; width: 243px; background-color: rgb(246, 246, 246); font-weight: bold; color: black;">------------------------</td>
+<td style="width: 161px; font-family: Courier New,Courier,monospace; text-align: right; background-color: rgb(246, 246, 246); font-weight: bold; color: black;">----------------</td>
 </tr>
 <tr>
-<td style="width: 126px;"></td>
-<td style="width: 364px; text-align: center; color: rgb(255, 204, 102); font-family: Arial;">
-<select class="form-select" name="tipo" id="tipo" onchange="agregar2()">
-    <option value="0">-- Elije una opción -- </option>
-    <option value="4">Gratis Delgada</option>
-    <option value="5">Gratis Tradicional</option>
-    <option value="6">$   300. A la Piedra</option>
-</select>
+<td style="width: 97px;"></td>
+<td style="text-align: center; color: rgb(255, 204, 102); font-family: Arial; width: 423px;">
+    <select class="form-select" id="tipo"></select>
 </td>
-<td style="width: 102px;"></td>
+<td style="text-align: center; width: 252px;"><select class="form-select" id="extra2"></select></td>
 <td style="font-family: Courier New,Courier,monospace; width: 243px; background-color: rgb(246, 246, 246); font-weight: bold; color: black;" id="item1"><big></big></td>
 <td style="width: 161px; font-family: Courier New,Courier,monospace; text-align: right; background-color: rgb(246, 246, 246); font-weight: bold; color: black;" id="valor1"><big></big></td>
 </tr>
 <tr>
-<td style="width: 126px;"></td>
-<td style="width: 364px; text-align: center; color: rgb(255, 204, 102); font-family: Arial;">¿Quieres alguna salsa SABROSONA?</td>
-<td style="width: 102px;"></td>
+<td style="width: 97px;"></td>
+<td style="text-align: center; color: rgb(255, 204, 102); font-family: Arial; width: 423px;">¿Quieres alguna salsa SABROSONA?</td>
+<td style="text-align: center; width: 252px;"></td>
 <td style="font-family: Courier New,Courier,monospace; width: 243px; background-color: rgb(246, 246, 246); font-weight: bold; color: black;" id="item2"><big></big></td>
 <td style="width: 161px; font-family: Courier New,Courier,monospace; text-align: right; background-color: rgb(246, 246, 246); font-weight: bold; color: black;" id="valor2"><big></big></td>
 </tr>
 <tr>
-<td></td>
-<td style="text-align: center; color: rgb(255, 204, 102); font-family: Arial;">
-<select class="form-select" name="salsa" id="salsa" onchange="agregar3()">
-    <option value="0">-- Elije una opción -- </option>
-    <option value="7">$   500. Salsa de Tomates</option>
-    <option value="8">$   700. Salsa BBQ</option>
-    <option value="9">$   800. Salsa Alfredo</option>
-    <option value="10">Sin Salsa</option></select>
+<td style="width: 97px;"></td>
+<td style="text-align: center; color: rgb(255, 204, 102); font-family: Arial; width: 423px;">
+<select class="form-select" id="salsa"></select>
 </td>
-<td style="width: 102px;"></td>
+<td style="text-align: center; width: 252px;"><select class="form-select" id="extra3"></select></td>
 <td style="font-family: Courier New,Courier,monospace; width: 243px; background-color: rgb(246, 246, 246); font-weight: bold; color: black;" id="item3"><big></big></td>
 <td style="width: 161px; font-family: Courier New,Courier,monospace; text-align: right; background-color: rgb(246, 246, 246); font-weight: bold; color: black;" id="valor3"><big></big></td>
 </tr>
 <tr>
-<td></td>
-<td style="text-align: center; color: rgb(255, 204, 102); font-family: Arial;">
+<td style="width: 97px;"></td>
+<td style="text-align: center; color: rgb(255, 204, 102); font-family: Arial; width: 423px;">
 ¿Cuanta salsa SABROSONA quieres?</td>
-<td style="width: 102px;"></td>
+<td style="text-align: center; width: 252px;"></td>
 <td style="font-family: Courier New,Courier,monospace; width: 243px; background-color: rgb(246, 246, 246); font-weight: bold; color: black;" id="item4"><big></big></td>
 <td style="width: 161px; font-family: Courier New,Courier,monospace; text-align: right; background-color: rgb(246, 246, 246); font-weight: bold; color: black;" id="valor4"><big></big></td>
 </tr>
 <tr>
-<td></td>
-<td style="text-align: center; color: rgb(255, 204, 102); font-family: Arial;">
-<select class="form-select" name="cantidadSalsa" id="cantidadSalsa" onchange="agregar4()">
-    <option value="0">-- Elije una opción -- </option>
-    <option value="11">Gratis Salsa Regular</option>
-    <option value="12">Gratis Poca Salsa</option>
-    <option value="13">$   400. Salsa Extra</option>
-    <option value="14">Sin Salsa</option>
-</select>
+<td style="width: 97px;"></td>
+<td style="text-align: center; color: rgb(255, 204, 102); font-family: Arial; width: 423px;">
+<select class="form-select" id="cantidadSalsa"></select>
 </td>
-<td style="width: 102px;"></td>
+<td style="text-align: center; width: 252px;"><select class="form-select" id="extra4"></select></td>
 <td style="font-family: Courier New,Courier,monospace; width: 243px; background-color: rgb(246, 246, 246); font-weight: bold; color: black;" id="item5"><big></big></td>
 <td style="width: 161px; font-family: Courier New,Courier,monospace; text-align: right; background-color: rgb(246, 246, 246); font-weight: bold; color: black;" id="valor5"><big></big></td>
 </tr>
 <tr>
-<td></td>
-<td style="text-align: center; color: rgb(255, 204, 102); font-family: Arial;">
+<td style="width: 97px;"></td>
+<td style="text-align: center; color: rgb(255, 204, 102); font-family: Arial; width: 423px;">
 ¿Quieres mozzarella SABROSON?</td>
-<td style="width: 102px;"></td>
+<td style="text-align: center; width: 252px;"></td>
 <td style="font-family: Courier New,Courier,monospace; width: 243px; background-color: rgb(246, 246, 246); font-weight: bold; color: black;" id="item6"><big></big></td>
 <td style="width: 161px; font-family: Courier New,Courier,monospace; text-align: right; background-color: rgb(246, 246, 246); font-weight: bold; color: black;" id="valor6"><big></big></td>
 </tr>
 <tr>
-<td></td>
-<td style="text-align: center; color: rgb(255, 204, 102); font-family: Arial;">
-<select class="form-select" name="queso" id="queso" onchange="agregar5()">
-    <option value="0">-- Elije una opción -- </option>
-    <option value="15">$   500. Mozzarella Base</option>
-    <option value="16">Sin Mozzarella</option>
-    <option value="17">$   400. Poco Mozzarella</option>
-    <option value="18">$   700. Mozzarella Extra</option>
-</select>
+<td style="width: 97px;"></td>
+<td style="text-align: center; color: rgb(255, 204, 102); font-family: Arial; width: 423px;">
+<select class="form-select" id="queso"></select>
 </td>
-<td style="width: 102px;"></td>
+<td style="width: 252px;"></td>
 <td style="font-family: Courier New,Courier,monospace; width: 243px; background-color: rgb(246, 246, 246); font-weight: bold; color: black;" id="item7"><big></big></td>
 <td style="width: 161px; font-family: Courier New,Courier,monospace; text-align: right; background-color: rgb(246, 246, 246); font-weight: bold; color: black;" id="valor7"><big></big></td>
 </tr>
 <tr>
-<td></td>
-<td style="text-align: center; color: rgb(255, 204, 102); font-family: Arial;">
+<td style="width: 97px;"></td>
+<td style="text-align: center; color: rgb(255, 204, 102); font-family: Arial; width: 423px;">
 ¿Algúna carne SABROSONA?
 </td>
-<td style="width: 102px;"></td>
-<td style="font-family: Courier New,Courier,monospace; width: 243px; background-color: rgb(246, 246, 246); font-weight: bold; color: black;"><big>EXTRAS1</big></td>
-<td style="width: 161px; font-family: Courier New,Courier,monospace; text-align: right; background-color: rgb(246, 246, 246); font-weight: bold; color: black;"><big>$E1</big></td>
+<td style="width: 252px;"></td>
+<td style="font-family: Courier New,Courier,monospace; width: 243px; background-color: rgb(246, 246, 246); font-weight: bold; color: black;" id="item8">
+    <br></td>
+<td style="width: 161px; font-family: Courier New,Courier,monospace; text-align: right; background-color: rgb(246, 246, 246); font-weight: bold; color: black;" id="valExt1"></td>
 </tr>
 <tr>
-<td></td>
-<td style="text-align: center; color: rgb(255, 204, 102); font-family: Arial;">
-<select class="form-select" name="carne" id="carne" onchange="agregar6()">
-    <option value="0">-- Elije una opción -- </option>
-    <option value="19">$ 1.000. Carne</option>
-    <option value="20">$ 1.500. Tocino</option>
-    <option value="21">$ 1.000. Salchicha Italiana</option>
-    <option value="22">$ 1.000. Pepperoni</option>
-    <option value="23">$ 1.000. Pollo</option>
-    <option value="24">$ 2.000. Lomito Canadiense</option>
-</select>
+<td style="width: 97px;"></td>
+<td style="text-align: center; color: rgb(255, 204, 102); font-family: Arial; width: 423px;">
+<select class="form-select" id="carne"></select>
 </td>
-<td style="width: 102px;"></td>
-<td style="font-family: Courier New,Courier,monospace; width: 243px; background-color: rgb(246, 246, 246); font-weight: bold; color: black;"><big>EXTRAS2</big></td>
-<td style="width: 161px; font-family: Courier New,Courier,monospace; text-align: right; background-color: rgb(246, 246, 246); font-weight: bold; color: black;"><big>$E2</big></td>
+<td style="width: 252px;"></td>
+<td style="font-family: Courier New,Courier,monospace; width: 243px; background-color: rgb(246, 246, 246); font-weight: bold; color: black;" id="item9">
+    <br></td> 
+    
+<td style="width: 161px; font-family: Courier New,Courier,monospace; text-align: right; background-color: rgb(246, 246, 246); font-weight: bold; color: black;" id="valExt2"></td>
 </tr>
 <tr>
-<td></td>
-<td style="text-align: center; color: rgb(255, 204, 102); font-family: Arial;">
+<td style="width: 97px;"></td>
+<td style="text-align: center; color: rgb(255, 204, 102); font-family: Arial; width: 423px;">
 ¿Algo sano y SABROSON?
 </td>
-<td style="width: 102px;"></td>
-<td style="font-family: Courier New,Courier,monospace; width: 243px; background-color: rgb(246, 246, 246); font-weight: bold; color: black;"><big>EXTRAS3</big></td>
-<td style="width: 161px; font-family: Courier New,Courier,monospace; text-align: right; background-color: rgb(246, 246, 246); font-weight: bold; color: black;"><big>$E3</big></td>
+<td style="width: 252px;"></td>
+<td style="font-family: Courier New,Courier,monospace; width: 243px; background-color: rgb(246, 246, 246); font-weight: bold; color: black;" id="item10">
+    <br></td>
+    
+<td style="width: 161px; font-family: Courier New,Courier,monospace; text-align: right; background-color: rgb(246, 246, 246); font-weight: bold; color: black;" id="valExt3"></td>
 </tr>
 <tr>
-<td></td>
-<td style="text-align: center; color: rgb(255, 204, 102); font-family: Arial;">
-<select class="form-select" name="vegetal" id="vegetal" onchange="agregar7()">
-    <option value="0">-- Elije una opción -- </option>
-    <option value="25">$   500. Tomate Cherry</option>
-    <option value="26">$   300. Champiñones</option>
-    <option value="27">$   300. Maíz</option>
-    <option value="28">$   400. Piñas</option>
-    <option value="29">$ 1.000. Tomates</option>
-    <option value="30">$   300. Pimientos Verdes</option>
-    <option value="31">$   250. Cebollas Caramelizadas</option>
-    <option value="32">$   250. Aceitunas Negras</option>
-    <option value="33">$   250. Pepinillos</option>
-</select>
+<td style="width: 97px;"></td>
+<td style="text-align: center; color: rgb(255, 204, 102); font-family: Arial; width: 423px;">
+<select class="form-select" id="vegetal"></select>
 </td>
-<td style="width: 102px;"></td>
-<td style="font-family: Courier New,Courier,monospace; width: 243px; background-color: rgb(246, 246, 246); font-weight: bold; color: black;"><big>EXTRAS4</big></td>
-<td style="width: 161px; font-family: Courier New,Courier,monospace; text-align: right; background-color: rgb(246, 246, 246); font-weight: bold; color: black;"><big>$E4</big></td>
+<td style="width: 252px;"></td>
+<td style="font-family: Courier New,Courier,monospace; width: 243px; background-color: rgb(246, 246, 246); font-weight: bold; color: black;" id="item11">
+   <br></td>
+
+<td style="width: 161px; font-family: Courier New,Courier,monospace; text-align: right; background-color: rgb(246, 246, 246); font-weight: bold; color: black;" id="valExt4"></td>
 </tr>
-<tr>
-<td></td>
-<td style="text-align: center; color: rgb(255, 204, 102); font-family: Arial;"></td>
-<td style="width: 102px;"></td>
-<td style="text-align: right; width: 243px; background-color: rgb(246, 246, 246); font-weight: bold; color: black; font-family: Courier New,Courier,monospace;"><big><big><big>Total</big></big></big></td>
+<tr><td style="width: 97px;"></td><td style="width: 423px;"></td><td style="width: 252px;"></td><td style="font-family: Courier New,Courier,monospace; width: 243px; background-color: rgb(246, 246, 246); font-weight: bold; color: black;">------------------------</td><td style="width: 161px; font-family: Courier New,Courier,monospace; text-align: right; background-color: rgb(246, 246, 246); font-weight: bold; color: black;">----------------</td></tr><tr>
+<td style="width: 97px;"></td>
+<td style="text-align: center; color: rgb(255, 204, 102); font-family: Arial; width: 423px;"></td>
+<td style="width: 252px;"></td>
+<td style="text-align: right; width: 243px; background-color: rgb(246, 246, 246); font-weight: bold; color: black; font-family: Courier New,Courier,monospace;"><big><big><big>Total &nbsp;</big></big></big></td>
 <td style="width: 161px; background-color: rgb(246, 246, 246); font-weight: bold; font-size: 24px; font-family: Courier New,Courier,monospace; text-align: right; color: black;" id="suma"></td>
 </tr>
 </tbody>
 </table>
-<br>
 </form>
 <br>
+<script src="./productos.js"></script>
+<script src="./maquetacion.js"></script>
+
+<script src="./funcciones.js"></script>
 </body></html>
