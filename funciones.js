@@ -13,10 +13,10 @@ let eva00 = "Sin elección"
 let carroVacio =["",0]
 let sumaTotal = []
 let validador =[]
-let c = ["c0","c1","c2","c3","c4","c5","c6","c7","c8","c9","c10"]
-var numero = Math.floor(Math.random()*10000);
+//let c = ["c0","c1","c2","c3","c4","c5","c6","c7","c8","c9","c10"]
+var numero = Math.floor(Math.random()*1000);
 let date = new Date();
-let ticketN = (numero+'/'+String(date.getDate()).padStart(2, '0') +'.' + String(date.getMonth() + 1).padStart(2, '0') + '.' + date.getFullYear())
+let ticketN = (numero+'-'+String(date.getDate()).padStart(2, '0') +'.' + String(date.getMonth() + 1).padStart(2, '0') + '.' + date.getFullYear())
 
 //verifica si carro esta vacio
 if (localStorage.length > 0) {
@@ -342,9 +342,11 @@ Swal.fire({
               }).then((result) => {
                  
                 if (result.isConfirmed) {
-                  Swal.fire('Su pago con crédito a sido aceptado.', '', 'success')
+                  descargarPdf()
+                  Swal.fire(`Su pago con crédito a sido aceptado.\nSu Ticket de Pedido \n N° ${ticketN}\na sido descargado.`, '', 'success')
                 } else if (result.isDenied) {
-                  Swal.fire('Su pago con débito a sido aceptado.', '', 'success')
+                  descargarPdf()
+                  Swal.fire(`Su pago con débito a sido aceptado.\nSu Ticket de Pedido \n N° ${ticketN}\na sido descargado.`, '', 'success')
                 }
               })
           
@@ -359,6 +361,79 @@ error1()
     }
   }
     
+  function descargarPdf() {
+    let linea1 = JSON.parse(localStorage.getItem("c0"))
+    let linea2 = JSON.parse(localStorage.getItem("c1"))
+    let linea3 = JSON.parse(localStorage.getItem("c2"))
+    let linea4 = JSON.parse(localStorage.getItem("c3"))
+    let linea5 = JSON.parse(localStorage.getItem("c4"))
+    let linea6 = JSON.parse(localStorage.getItem("c5"))
+    let linea7 = JSON.parse(localStorage.getItem("c6"))
+    let linea8 = JSON.parse(localStorage.getItem("c7"))
+    let linea9 = JSON.parse(localStorage.getItem("c8"))
+    let linea10 = JSON.parse(localStorage.getItem("c9"))
+    let linea11 = JSON.parse(localStorage.getItem("c10"))
+    
+
+    let doc = new jsPDF('p', 'mm', [130, 100]);
+    doc.setFont("helvetica")
+    doc.setFontType("bold")
+    doc.setFontSize(12);
+    doc.text(11, 5, `Ticket de pedido N° ${ticketN}`);
+    doc.setLineWidth(0.5);
+    doc.line(4, 6, 96, 6)
+    doc.setFont("courier")
+    doc.setFontType("normal")
+    doc.setFontSize(10);
+    doc.text(3, 20, "Tamaño de Pizza :");
+    doc.setFontSize(12);
+    doc.text(5, 25, `$ ${innerHTML =Intl.NumberFormat('es-CL', {minimumFractionDigits: 0}).format(linea1[1])}.- ${linea1[0]} `);
+    doc.text(5, 30, "Tipo de masa :");
+    doc.setFontSize(12);
+    doc.text(5, 35, `$ ${innerHTML =Intl.NumberFormat('es-CL', {minimumFractionDigits: 0}).format(linea2[1])}.- ${linea1[0]} `);
+    doc.setFontSize(10);
+    doc.text(5, 40, "Tipo de salsa :");
+    doc.setFontSize(12);
+    doc.text(5, 45, `$ ${innerHTML =Intl.NumberFormat('es-CL', {minimumFractionDigits: 0}).format(linea3[1])}.- ${linea1[0]} `);
+    doc.setFontSize(10);
+    doc.text(5, 50, "Cantidad de salsa :");
+    doc.setFontSize(12);
+    doc.text(5, 55, `$ ${innerHTML =Intl.NumberFormat('es-CL', {minimumFractionDigits: 0}).format(linea4[1])}.- ${linea1[0]} `);
+    doc.setFontSize(10);
+    doc.text(5, 60, "Mozzarella :");
+    doc.setFontSize(12);
+    doc.text(5, 65, `$ ${innerHTML =Intl.NumberFormat('es-CL', {minimumFractionDigits: 0}).format(linea5[1])}.- ${linea1[0]} `);
+    doc.setFontSize(10);
+    doc.text(5, 70, "Carne :");
+    doc.setFontSize(12);
+    doc.text(5, 75, `$ ${innerHTML =Intl.NumberFormat('es-CL', {minimumFractionDigits: 0}).format(linea6[1])}.- ${linea1[0]} `);
+    doc.setFontSize(10);
+    doc.text(5, 80, "Vegetales :");
+    doc.setFontSize(12);
+    doc.text(5, 85, `$ ${innerHTML =Intl.NumberFormat('es-CL', {minimumFractionDigits: 0}).format(linea7[1])}.- ${linea1[0]} `);
+    doc.setFontSize(10);
+    doc.text(5, 90, "Extras :");
+    doc.setFontSize(12);
+    doc.text(5, 95, `$ ${innerHTML =Intl.NumberFormat('es-CL', {minimumFractionDigits: 0}).format(linea8[1])}.- ${linea1[0]} `);
+    doc.text(5, 100, `$ ${innerHTML =Intl.NumberFormat('es-CL', {minimumFractionDigits: 0}).format(linea9[1])}.- ${linea1[0]} `);
+    doc.text(5, 105, `$ ${innerHTML =Intl.NumberFormat('es-CL', {minimumFractionDigits: 0}).format(linea10[1])}.- ${linea1[0]} `);
+    doc.text(5, 110, `$ ${innerHTML =Intl.NumberFormat('es-CL', {minimumFractionDigits: 0}).format(linea11[1])}.- ${linea1[0]} `);
+    doc.setLineWidth(0.5);
+    doc.line(4, 115, 96, 115)
+    doc.setLineWidth(0.5);
+    doc.line(4, 116, 96, 116)
+    doc.setFontSize(15);
+    doc.setFontType("bold")
+    doc.text(5, 125, `$ ${innerHTML =Intl.NumberFormat('es-CL', {minimumFractionDigits: 0}).format(sumaTotal)} Total a pagar.`)
+    doc.save(`Ticket-${ticketN}.pdf`);
+
+    
+  }
+
+
+
+
+
 
     function ok() {
 
@@ -398,12 +473,32 @@ function error1() {
           
           Toast.fire({
             icon: 'warning',
-            title: 'Ups... Tu pedido presenta problemas.'
+            title: 'Ups... debes elegir un tamaño para tu pizza.'
           })
     
     }
     
+    function error2() {
     
+      const Toast = Swal.mixin({
+          toast: true,
+          position: 'top-end',
+          showConfirmButton: false,
+          timer: 2500,
+          timerProgressBar: true,
+          didOpen: (toast) => {
+            toast.addEventListener('mouseenter', Swal.stopTimer)
+            toast.addEventListener('mouseleave', Swal.resumeTimer)
+          }
+        })
+        
+        Toast.fire({
+          icon: 'warning',
+          title: 'Ups... debes elegir un tipo de masa para tu pizza.'
+        })
+    
+    }
+
     function pedioOld () {
         Swal.fire({
             title: 'Hola nuevamente, ¿Quieres ver tu pedido anterior?',
@@ -474,7 +569,8 @@ function error1() {
             total()
             document.getElementById("suma").innerHTML =Intl.NumberFormat('es-CL', {minimumFractionDigits: 0}).format(sumaTotal[0])
 
-           } else if (result.isDenied) {
+
+            } else if (result.isDenied) {
 
               localStorage.clear()
               for(i=0 ; i<=10;i++) {
