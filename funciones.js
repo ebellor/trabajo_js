@@ -361,7 +361,7 @@ error1()
     }
   }
     
-  function descargarPdf() {
+    function descargarPdf() {
     let linea1 = JSON.parse(localStorage.getItem("c0"))
     let linea2 = JSON.parse(localStorage.getItem("c1"))
     let linea3 = JSON.parse(localStorage.getItem("c2"))
@@ -373,62 +373,69 @@ error1()
     let linea9 = JSON.parse(localStorage.getItem("c8"))
     let linea10 = JSON.parse(localStorage.getItem("c9"))
     let linea11 = JSON.parse(localStorage.getItem("c10"))
-    
-
-    let doc = new jsPDF('p', 'mm', [130, 100]);
+        
+    let doc = new jsPDF('p', 'mm', [160, 100]);
     doc.setFont("helvetica")
     doc.setFontType("bold")
+    
     doc.setFontSize(12);
-    doc.text(11, 5, `Ticket de pedido N° ${ticketN}`);
+    doc.text(11, 5,` Ticket de pedido N° ${ticketN}`);
     doc.setLineWidth(0.5);
-    doc.line(4, 6, 96, 6)
+    doc.lines(4, 6, 96, 6)
     doc.setFont("courier")
     doc.setFontType("normal")
     doc.setFontSize(10);
-    doc.text(3, 20, "Tamaño de Pizza :");
+    doc.text(5, 20, `Tamaño de Pizza : ${linea1[0]}`);
     doc.setFontSize(12);
-    doc.text(5, 25, `$ ${innerHTML =Intl.NumberFormat('es-CL', {minimumFractionDigits: 0}).format(linea1[1])}.- ${linea1[0]} `);
-    doc.text(5, 30, "Tipo de masa :");
-    doc.setFontSize(12);
-    doc.text(5, 35, `$ ${innerHTML =Intl.NumberFormat('es-CL', {minimumFractionDigits: 0}).format(linea2[1])}.- ${linea2[0]} `);
+    doc.text(95, 25, `$ ${innerHTML =Intl.NumberFormat('es-CL', {minimumFractionDigits: 0}).format(linea1[1])}.-`,'right');
     doc.setFontSize(10);
-    doc.text(5, 40, "Tipo de salsa :");
+    doc.text(5, 30, `Tipo de masa : ${linea2[0]}`);
     doc.setFontSize(12);
-    doc.text(5, 45, `$ ${innerHTML =Intl.NumberFormat('es-CL', {minimumFractionDigits: 0}).format(linea3[1])}.- ${linea3[0]} `);
+    doc.text(95, 35, `$ ${innerHTML =Intl.NumberFormat('es-CL', {minimumFractionDigits: 0}).format(linea2[1])}.-`,'right');
     doc.setFontSize(10);
-    doc.text(5, 50, "Cantidad de salsa :");
+    doc.text(5, 40, `Tipo de salsa : ${linea3[0]}`);
     doc.setFontSize(12);
-    doc.text(5, 55, `$ ${innerHTML =Intl.NumberFormat('es-CL', {minimumFractionDigits: 0}).format(linea4[1])}.- ${linea4[0]} `);
+    doc.text(95, 45, `$ ${innerHTML =Intl.NumberFormat('es-CL', {minimumFractionDigits: 0}).format(linea3[1])}.-`,'right');
     doc.setFontSize(10);
-    doc.text(5, 60, "Mozzarella :");
+    doc.text(5, 50, `Cantidad de salsa : ${linea4[0]}`);
     doc.setFontSize(12);
-    doc.text(5, 65, `$ ${innerHTML =Intl.NumberFormat('es-CL', {minimumFractionDigits: 0}).format(linea5[1])}.- ${linea5[0]} `);
+    doc.text(95, 55, `$ ${innerHTML =Intl.NumberFormat('es-CL', {minimumFractionDigits: 0}).format(linea4[1])}.-`,'right');
     doc.setFontSize(10);
-    doc.text(5, 70, "Carne :");
+    doc.text(5, 60, `Mozzarella : ${linea5[0]}`);
     doc.setFontSize(12);
-    doc.text(5, 75, `$ ${innerHTML =Intl.NumberFormat('es-CL', {minimumFractionDigits: 0}).format(linea6[1])}.- ${linea6[0]} `);
+    doc.text(95, 65, `$ ${innerHTML =Intl.NumberFormat('es-CL', {minimumFractionDigits: 0}).format(linea5[1])}.-`,'right');
     doc.setFontSize(10);
-    doc.text(5, 80, "Vegetales :");
+    doc.text(5, 70, `Carne : ${linea6[0]}`);
     doc.setFontSize(12);
-    doc.text(5, 85, `$ ${innerHTML =Intl.NumberFormat('es-CL', {minimumFractionDigits: 0}).format(linea7[1])}.- ${linea7[0]} `);
+    doc.text(95, 75, `$ ${innerHTML =Intl.NumberFormat('es-CL', {minimumFractionDigits: 0}).format(linea6[1])}.-`,'right');
+    doc.setFontSize(10);
+    doc.text(5, 80, `Vegetales : ${linea7[0]}`);
+    doc.setFontSize(12);
+    doc.text(95, 85, `$ ${innerHTML =Intl.NumberFormat('es-CL', {minimumFractionDigits: 0}).format(linea7[1])}.-`,'right');
     doc.setFontSize(10);
     doc.text(5, 90, "Extras :");
     doc.setFontSize(12);
-    doc.text(5, 95, `$ ${innerHTML =Intl.NumberFormat('es-CL', {minimumFractionDigits: 0}).format(linea8[1])}.- ${linea8[0]} `);
-    doc.text(5, 100, `$ ${innerHTML =Intl.NumberFormat('es-CL', {minimumFractionDigits: 0}).format(linea9[1])}.- ${linea9[0]} `);
-    doc.text(5, 105, `$ ${innerHTML =Intl.NumberFormat('es-CL', {minimumFractionDigits: 0}).format(linea10[1])}.- ${linea10[0]} `);
-    doc.text(5, 110, `$ ${innerHTML =Intl.NumberFormat('es-CL', {minimumFractionDigits: 0}).format(linea11[1])}.- ${linea11[0]} `);
+    doc.text(5, 95,`${linea8[0]}`)
+    doc.text(95, 95, `$ ${innerHTML =Intl.NumberFormat('es-CL', {minimumFractionDigits: 0}).format(linea8[1])}.-`,'right');
+    doc.text(5, 100,`${linea9[0]}`)
+    doc.text(95, 100, `$ ${innerHTML =Intl.NumberFormat('es-CL', {minimumFractionDigits: 0}).format(linea9[1])}.-`,'right');
+    doc.text(5, 105,`${linea10[0]}`)
+    doc.text(95, 105, `$ ${innerHTML =Intl.NumberFormat('es-CL', {minimumFractionDigits: 0}).format(linea10[1])}.-`,'right');
+    doc.text(5, 110,`${linea11[0]}`)
+    doc.text(95, 110, `$ ${innerHTML =Intl.NumberFormat('es-CL', {minimumFractionDigits: 0}).format(linea11[1])}.-`,'right');
     doc.setLineWidth(0.5);
     doc.line(4, 115, 96, 115)
     doc.setLineWidth(0.5);
     doc.line(4, 116, 96, 116)
     doc.setFontSize(15);
     doc.setFontType("bold")
-    doc.text(5, 125, `$ ${innerHTML =Intl.NumberFormat('es-CL', {minimumFractionDigits: 0}).format(sumaTotal)} Total a pagar.`)
+    doc.text(95, 125, `Total a pagar $ ${innerHTML =Intl.NumberFormat('es-CL', {minimumFractionDigits: 0}).format(sumaTotal)}.-`,'right')
+  
     doc.save(`Ticket-${ticketN}.pdf`);
-
+   
     
   }
+
 
 
 
