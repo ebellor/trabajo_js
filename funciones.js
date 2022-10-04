@@ -9,12 +9,13 @@ let carro7 = []
 let carro8 = []
 let carro9 = []
 let carro10 = []
-let eva00 = "Sin elección"
+let base = []
 let carroVacio = ["", 0]
 let sumaTotal = []
 let validador = []
 var numero = Math.floor(Math.random() * 1000);
 let date = new Date();
+//GENERA NÚMERO DE TICKET RAMDOM CON FECHA
 let ticketN = (numero + '-' + String(date.getDate()).padStart(2, '0') + '.' + String(date.getMonth() + 1).padStart(2, '0') + '.' + date.getFullYear())
 
 //verifica si carro esta vacio
@@ -37,6 +38,20 @@ localStorage.length > 0 ? verifica() : limpia()
 //botones
 const botonPagar = document.querySelector("#pagar")
 botonPagar.onclick = function () {
+ 
+//GENERA QR
+  new QRious({
+    element: document.querySelector("#codigo"),
+    value: `Ticket N° ${ticketN}`, // La URL o el texto
+    size: 100 ,
+    backgroundAlpha: 0, // 0 para fondo transparente
+    foreground: "#000000", // Color del QR
+    level: "H", // Puede ser L,M,Q y H (L es el de menor nivel, H el mayor)
+  });
+  //CAPTURA SRC DEL QR PARA INCLUIRLO EN EL PDF
+  let base64 = document.querySelector('img').getAttribute('src');
+  base.push(base64)
+  
   total()
   pagarPedido()
 }
@@ -315,7 +330,7 @@ function agregar11() {
   ok()
 }
 
-
+//CALCULA EL TOTAL ACUMULADO Y ACTUALIZA AL EXISTIR CAMBIUOS
 function total() {
   sumaTotal = []
   let suma0 = JSON.parse(localStorage.getItem("c0"))
@@ -337,8 +352,11 @@ function total() {
 
 }
 
+
+//PAGAR PEDIDO
 function pagarPedido() {
-  if (validador[0] == 7) {
+
+  if (validador[0] == 7) {//VERIFICA SI CUMPLE CON EL MINIMO DE ELEMENTOS
 
     Swal.fire({
       backdrop: `rgba(81,56,69,0.6)`,
@@ -383,6 +401,7 @@ function pagarPedido() {
   }
 }
 
+//GENERACIÓN Y DESCARGA DE TICKET EN PDF
 function descargarPdf() {
   let linea1 = JSON.parse(localStorage.getItem("c0"))
   let linea2 = JSON.parse(localStorage.getItem("c1"))
@@ -396,11 +415,12 @@ function descargarPdf() {
   let linea10 = JSON.parse(localStorage.getItem("c9"))
   let linea11 = JSON.parse(localStorage.getItem("c10"))
 
-  let doc = new jsPDF('p', 'mm', [160, 100]);
+  let doc = new jsPDF('p', 'mm', [170, 100]);
+
   doc.setFont("helvetica")
   doc.setFontType("bold")
-  doc.setFontSize(12);
-  doc.text(11, 5, ` Ticket de pedido N° ${ticketN}`);
+  doc.setFontSize(15);
+  doc.text(6, 6, `PIZZERÍA EL MONITO SABROSÓN`);
   doc.setLineWidth(0.5);
   doc.lines(4, 6, 96, 6)
   doc.setFont("courier")
@@ -436,18 +456,16 @@ function descargarPdf() {
   doc.setFontSize(10);
   doc.text(5, 90, "Extras :");
   doc.setFontSize(12);
-    
-  //OPERADORES TERNARIO
-    
-  linea8[1]==0?doc.text(95, 95, ``, 'right'):doc.text(95, 95, `$ ${innerHTML = Intl.NumberFormat('es-CL', { minimumFractionDigits: 0 }).format(linea8[1])}.-`, 'right');
+  ////OPERADORES TERNARIO
+  linea8[1] == 0 ? doc.text(95, 95, ``, 'right') : doc.text(95, 95, `$ ${innerHTML = Intl.NumberFormat('es-CL', { minimumFractionDigits: 0 }).format(linea8[1])}.-`, 'right');
   doc.text(5, 95, `${linea8[0]}`)
-  linea9[1]==0?doc.text(95, 100, ``, 'right'):doc.text(95, 100, `$ ${innerHTML = Intl.NumberFormat('es-CL', { minimumFractionDigits: 0 }).format(linea9[1])}.-`, 'right');
+  linea9[1] == 0 ? doc.text(95, 100, ``, 'right') : doc.text(95, 100, `$ ${innerHTML = Intl.NumberFormat('es-CL', { minimumFractionDigits: 0 }).format(linea9[1])}.-`, 'right');
   doc.text(5, 100, `${linea9[0]}`)
-  linea10[1]==0?doc.text(95, 105, ``, 'right'):doc.text(95, 105, `$ ${innerHTML = Intl.NumberFormat('es-CL', { minimumFractionDigits: 0 }).format(linea10[1])}.-`, 'right');
+  linea10[1] == 0 ? doc.text(95, 105, ``, 'right') : doc.text(95, 105, `$ ${innerHTML = Intl.NumberFormat('es-CL', { minimumFractionDigits: 0 }).format(linea10[1])}.-`, 'right');
   doc.text(5, 105, `${linea10[0]}`)
-  linea11[1]==0?doc.text(95, 110, ``, 'right'):doc.text(95, 110, `$ ${innerHTML = Intl.NumberFormat('es-CL', { minimumFractionDigits: 0 }).format(linea11[1])}.-`, 'right');
-  
+  linea11[1] == 0 ? doc.text(95, 110, ``, 'right') : doc.text(95, 110, `$ ${innerHTML = Intl.NumberFormat('es-CL', { minimumFractionDigits: 0 }).format(linea11[1])}.-`, 'right');
   doc.text(5, 110, `${linea11[0]}`)
+
   doc.setLineWidth(0.5);
   doc.line(4, 115, 96, 115)
   doc.setLineWidth(0.5);
@@ -455,9 +473,17 @@ function descargarPdf() {
   doc.setFontSize(15);
   doc.setFontType("bold")
   doc.text(95, 125, `Total a pagar $ ${innerHTML = Intl.NumberFormat('es-CL', { minimumFractionDigits: 0 }).format(sumaTotal)}.-`, 'right')
+  let imgData = base[0]
+  doc.addImage(imgData, 'JPEG', 37, 130, 25, 25);
+  doc.setFont("helvetica")
+  doc.setFontType("bold")
+  doc.setFontSize(12);
+  doc.text(11, 160, ` Ticket de pedido N° ${ticketN}`);
   doc.save(`Ticket-${ticketN}.pdf`);
 }
 
+
+//MESAJE DE PRODUCTO AGREGADO AL PEDIDO
 function ok() {
 
   const Toast = Swal.mixin({
@@ -479,6 +505,7 @@ function ok() {
 
 }
 
+//MESAJE DE ERROR POR QUE FALTA TAMAÑO O TIPO DE MASA DE LA PIZZA
 
 function error1() {
 
@@ -500,6 +527,8 @@ function error1() {
   })
 
 }
+
+//MONTAJE DE PEDIDO ANTERIOR EN DOM
 
 function pedioOld() {
   Swal.fire({
@@ -576,7 +605,7 @@ function pedioOld() {
 
     } else if (result.isDenied) {
 
-      localStorage.clear()
+      localStorage.clear()//ELIMINACIÓN DE PEDIDO ANTIGUO
       for (i = 0; i <= 10; i++) {
         const storageDatos = JSON.stringify(carroVacio)
         localStorage.setItem(`c${i}`, storageDatos)
