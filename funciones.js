@@ -540,7 +540,16 @@ function pedioOld() {
   }).then((result) => {
 
     if (result.isConfirmed) {
-      Swal.fire('Ok! Buena elección.', '', 'success')
+
+      Swal.fire({
+        position: 'center',
+        icon: 'success',
+        title: 'Ok! Buena elección.',
+        showConfirmButton: false,
+        timer: 1500
+      })
+
+    
 
       let recuDato0 = JSON.parse(localStorage.getItem("c0"))
       let valor0 = Number(`${recuDato0[1]}`)
@@ -610,7 +619,16 @@ function pedioOld() {
         const storageDatos = JSON.stringify(carroVacio)
         localStorage.setItem(`c${i}`, storageDatos)
       }
-      Swal.fire('Ok! Empecemos de cero.', '', 'info')
+      
+      Swal.fire({
+        position: 'center',
+        icon: 'success',
+        title: 'Ok! Empecemos de cero.',
+        showConfirmButton: false,
+        timer: 1500
+      })
+      
+      
     }
   })
 
