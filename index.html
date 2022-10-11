@@ -29,7 +29,11 @@
 </table>
 <table style="text-align: left; width: 65%;" border="0" cellpadding="2" cellspacing="2">
 <tbody>
-<tr>
+<tr> <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalRegistro">
+  Registro
+</button><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalLogin">
+  Login
+</button>
 <td>
 <center>
 <h2 style="width: 1208px;"><img style="width: 20%;" alt="" src="imagenes/arma-tu-pizza-one-line-banner.png"></h2>
@@ -47,6 +51,7 @@
 <td><img style="width: 178px; height: 72px;" alt="" src="imagenes/extra.png"></td>
 <td style="text-align: center; font-family: Arial; width: 243px;" colspan="2" rowspan="1">
 <div id="pagar"><button id="pagar" type="button" class="btn btn-danger">Pagar Pedido...</button>
+  
 </div>
 </td>
 </tr>
@@ -199,6 +204,60 @@
 </table>
 </form>
 <br>
+
+<! –– MODALES ––>
+<! –– MODAL REGISTRO ––>
+<div class="modal fade" id="modalRegistro" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="modalRegistro" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <center><h1 class="modal-title" id="staticBackdropLabel">Regístrate con nosotros</h5></center>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div><center>
+      <div class="modal-body">
+        <form class="registro" id="registro">
+      <input id="Usuario" name="Usuario" type="text" placeholder="Usuario" required><br>
+      <input id="Nombres" name="Nombres" type="text" placeholder="Nombres" required><br>
+      <input id="Apellidos" name="Apellidos" type="text" placeholder="Apellidos" required><br>
+      <input id="email" name="email" type="email" placeholder="email" required><br>
+      <input id="password" name="password" type="password" placeholder="password" required><br>
+
+      <button type="submit" class="btn btn-primary">Enviar</button>
+      </form>
+  </center>
+      </div>
+      <div class="modal-footer">
+  
+      </div>
+    </div>
+  </div>
+</div>
+
+<! –– MODAL LOGIN ––>
+
+<div class="modal fade" id="modalLogin" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="modalLogin" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <center><h1 class="modal-title" id="staticBackdropLabel">Ingresa</h5></center>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div><center>
+      <div class="modal-body">
+        <form class="login" id="login">
+      <input id="Usuario" name="Usuario" type="text" placeholder="Usuario" required><br>
+      <input id="password" name="password" type="password" placeholder="password" required><br>
+
+      <button type="submit" class="btn btn-primary">Ingresar</button>
+      </form>
+  </center>
+      </div>
+      <div class="modal-footer">
+  
+      </div>
+    </div>
+  </div>
+</div>
+
 <script src="./jspdf.min.js"></script>
 <script src="./productos.js"></script>
 <script src="./maquetacion.js"></script>
