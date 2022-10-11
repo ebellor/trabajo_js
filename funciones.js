@@ -59,8 +59,7 @@ let userActual =login.Usuario.value
 let passActual =login.password.value
 let userExiste = registroFullJson.find(usuario => usuario.User === userActual)
 let passExiste = registroFullJson.find(usuario => usuario.password === passActual)
-let nomExiste = registroFullJson.find(usuario => usuario.Nombres)
-usuarioActual.push(nomExiste.Nombres)
+usuarioActual.push(userExiste.Nombres)
 
 if (userExiste === undefined) {
     userExiste ="nulo"
