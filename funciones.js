@@ -13,7 +13,7 @@ let base = []
 let carroVacio = ["", 0]
 let sumaTotal = []
 let validador = []
-let usuarioActual = []
+let usuarioActual = ["Usuario"]
 var numero = Math.floor(Math.random() * 1000);
 let date = new Date();
 const modalR = document.getElementById('modalRegistro')
@@ -47,7 +47,12 @@ function limpia() {
     localStorage.setItem(`c${i}`, storageDatos)
   }
 }
+//OPERADOR TERNARIO
 
+//localStorage.length > 0 ? verifica() : limpia()
+
+//botones
+//login
 
 const login=document.getElementById('login')
 login.addEventListener('submit', async(e)=>{
@@ -59,7 +64,9 @@ let userActual =login.Usuario.value
 let passActual =login.password.value
 let userExiste = registroFullJson.find(usuario => usuario.User === userActual)
 let passExiste = registroFullJson.find(usuario => usuario.password === passActual)
+usuarioActual =[]
 usuarioActual.push(userExiste.Nombres)
+
 
 if (userExiste === undefined) {
     userExiste ="nulo"
@@ -73,7 +80,14 @@ if (userExiste.User === userActual && passExiste.password === passActual) {
 
   localStorage.length > 0 ? verifica() : limpia()
 
-
+/*    Swal.fire({
+        position: 'top-end',
+        icon: 'success',
+        title: 'Ingreso Correcto.',
+        showConfirmButton: false,
+        timer: 1500
+      })
+*/
       
 
     } else {
@@ -173,11 +187,11 @@ botonPagar.onclick = function () {
 //GENERA QR
   new QRious({
     element: document.querySelector("#codigo"),
-    value: `Ticket N° ${ticketN}`, 
+    value: `Ticket N° ${ticketN}`, // La URL o el texto
     size: 100 ,
-    backgroundAlpha: 0, /
-    foreground: "#000000", 
-    level: "H", 
+    backgroundAlpha: 0, // 0 para fondo transparente
+    foreground: "#000000", // Color del QR
+    level: "H", // Puede ser L,M,Q y H (L es el de menor nivel, H el mayor)
   });
   //CAPTURA SRC DEL QR PARA INCLUIRLO EN EL PDF
   let base64 = document.querySelector('img').getAttribute('src');
@@ -487,12 +501,12 @@ function total() {
 //PAGAR PEDIDO
 function pagarPedido() {
 
-  if (validador[0] == 7) {
+  if (validador[0] == 7) {//VERIFICA SI CUMPLE CON EL MINIMO DE ELEMENTOS
 
     Swal.fire({
       backdrop: `rgba(81,56,69,0.6)`,
       imageUrl: './imagenes/logoticket.png',
-      title: 'Su pedido es por',
+      title: `${usuarioActual}, tu pedido es por`,
       text: `$ ${innerHTML = Intl.NumberFormat('es-CL', { minimumFractionDigits: 0 }).format(sumaTotal)} `,
       icon: 'warning',
       showCancelButton: true,
@@ -504,7 +518,7 @@ function pagarPedido() {
         Swal.fire({
           backdrop: `rgba(81,56,69,0.6)`,
           imageUrl: './imagenes/tarjetas.png',
-          title: '¿Cómo desea pagar?',
+          title: '¿Cómo deseas pagar?',
           icon: `question`,
           showDenyButton: true,
           showCancelButton: true,
@@ -514,10 +528,10 @@ function pagarPedido() {
 
           if (result.isConfirmed) {
             descargarPdf()
-            Swal.fire(`Su pago con crédito a sido aceptado.\nSu Ticket de Pedido \n N° ${ticketN}\na sido descargado.`, '', 'success')
+            Swal.fire(`${usuarioActual}, tu pago con crédito a sido aceptado.\nTu Ticket de Pedido \n N° ${ticketN}\na sido descargado.`, '', 'success')
           } else if (result.isDenied) {
             descargarPdf()
-            Swal.fire(`Su pago con débito a sido aceptado.\nSu Ticket de Pedido \n N° ${ticketN}\na sido descargado.`, '', 'success')
+            Swal.fire(`${usuarioActual}, tu pago con débito a sido aceptado.\nSu Ticket de Pedido \n N° ${ticketN}\na sido descargado.`, '', 'success')
           }
         })
 
@@ -663,7 +677,8 @@ function error1() {
 
 function pedioOld() {
   Swal.fire({
-    title: `Hola nuevamente, ¿Quieres ver tu pedido anterior?`,
+    title: `Hola ${usuarioActual}, ¿Quieres ver tu pedido anterior?`,
+    //title: `Hola nuevamente, ¿Quieres ver tu pedido anterior?`,
     showDenyButton: true,
     confirmButtonText: 'Si... quiero verlo.',
     denyButtonText: `No... pediré otra cosa.`,
