@@ -47,12 +47,7 @@ function limpia() {
     localStorage.setItem(`c${i}`, storageDatos)
   }
 }
-//OPERADOR TERNARIO
 
-//localStorage.length > 0 ? verifica() : limpia()
-
-//botones
-//login
 
 const login=document.getElementById('login')
 login.addEventListener('submit', async(e)=>{
@@ -79,14 +74,7 @@ if (userExiste.User === userActual && passExiste.password === passActual) {
 
   localStorage.length > 0 ? verifica() : limpia()
 
-/*    Swal.fire({
-        position: 'top-end',
-        icon: 'success',
-        title: 'Ingreso Correcto.',
-        showConfirmButton: false,
-        timer: 1500
-      })
-*/
+
       
 
     } else {
@@ -186,11 +174,11 @@ botonPagar.onclick = function () {
 //GENERA QR
   new QRious({
     element: document.querySelector("#codigo"),
-    value: `Ticket N° ${ticketN}`, // La URL o el texto
+    value: `Ticket N° ${ticketN}`, 
     size: 100 ,
-    backgroundAlpha: 0, // 0 para fondo transparente
-    foreground: "#000000", // Color del QR
-    level: "H", // Puede ser L,M,Q y H (L es el de menor nivel, H el mayor)
+    backgroundAlpha: 0, /
+    foreground: "#000000", 
+    level: "H", 
   });
   //CAPTURA SRC DEL QR PARA INCLUIRLO EN EL PDF
   let base64 = document.querySelector('img').getAttribute('src');
@@ -500,7 +488,7 @@ function total() {
 //PAGAR PEDIDO
 function pagarPedido() {
 
-  if (validador[0] == 7) {//VERIFICA SI CUMPLE CON EL MINIMO DE ELEMENTOS
+  if (validador[0] == 7) {
 
     Swal.fire({
       backdrop: `rgba(81,56,69,0.6)`,
@@ -676,8 +664,7 @@ function error1() {
 
 function pedioOld() {
   Swal.fire({
-    title: `Hola ${usuarioActual}, ¿Quieres ver tu pedido anterior?`,
-    
+    title: `Hola nuevamente, ¿Quieres ver tu pedido anterior?`,
     showDenyButton: true,
     confirmButtonText: 'Si... quiero verlo.',
     denyButtonText: `No... pediré otra cosa.`,
