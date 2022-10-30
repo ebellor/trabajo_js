@@ -29,7 +29,7 @@ const login = document.getElementById('login')
 login.addEventListener('submit', async (e) => {
   e.preventDefault()
 
-  const registroFull = await fetch('https://sheet.best/api/sheets/99e8fa50-ec84-474d-b541-0b1cd4da8ddd')
+  const registroFull = await fetch('https://sheet.best/api/sheets/751cdd4a-bdb4-4c67-a5b8-44fbc4facf36')
   const registroFullJson = await registroFull.json()
   let userActual = login.Usuario.value
   let passActual = login.password.value
@@ -67,7 +67,7 @@ const registro = document.getElementById('registro')
 registro.addEventListener('submit', async (e) => {
   e.preventDefault()
 
-  const registroFull = await fetch('https://sheet.best/api/sheets/99e8fa50-ec84-474d-b541-0b1cd4da8ddd')
+  const registroFull = await fetch('https://sheet.best/api/sheets/751cdd4a-bdb4-4c67-a5b8-44fbc4facf36')
   const registroFullJson = await registroFull.json()
   let userActual = registro.Usuario.value
   let mailActual = registro.email.value
@@ -730,7 +730,7 @@ function limpia() {
 //REGISTRO
 function registra() {
 
-  const registroUser = fetch('https://sheet.best/api/sheets/99e8fa50-ec84-474d-b541-0b1cd4da8ddd', {
+  const registroUser = fetch('https://sheet.best/api/sheets/751cdd4a-bdb4-4c67-a5b8-44fbc4facf36', {
     method: 'POST',
     mode: 'cors',
     headers: {
