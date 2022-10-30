@@ -19,131 +19,87 @@ let date = new Date();
 const modalR = document.getElementById('modalRegistro')
 //GENERA NÚMERO DE TICKET RAMDOM CON FECHA
 let ticketN = (numero + '-' + String(date.getDate()).padStart(2, '0') + '.' + String(date.getMonth() + 1).padStart(2, '0') + '.' + date.getFullYear())
+totales = 0
+sumaTotal = []
+verifica()
+console.log(sumaTotal)
 
-//verifica si carro esta vacio
-function verifica() {
-  Swal.fire({
-    position: 'top-end',
-    icon: 'success',
-    title: 'Ingreso Correcto.',
-    showConfirmButton: false,
-    timer: 1500
-  })
-  pedioOld()
-  total()
-  document.getElementById("ticket").innerHTML = `  ${ticketN}`
-}
-//limpia carro
-function limpia() {
-  Swal.fire({
-    position: 'top-end',
-    icon: 'success',
-    title: 'Ingreso Correcto.',
-    showConfirmButton: false,
-    timer: 1500
-  })
-  for (i = 0; i <= 10; i++) {
-    const storageDatos = JSON.stringify(carroVacio)
-    localStorage.setItem(`c${i}`, storageDatos)
+//LOGIN
+const login = document.getElementById('login')
+login.addEventListener('submit', async (e) => {
+  e.preventDefault()
+
+  const registroFull = await fetch('https://sheet.best/api/sheets/99e8fa50-ec84-474d-b541-0b1cd4da8ddd')
+  const registroFullJson = await registroFull.json()
+  let userActual = login.Usuario.value
+  let passActual = login.password.value
+  let userExiste = registroFullJson.find(usuario => usuario.User === userActual)
+  let passExiste = registroFullJson.find(usuario => usuario.password === passActual)
+  usuarioActual = []
+  usuarioActual.push(userExiste.Nombres)
+
+  if (userExiste === undefined) {
+    userExiste = "nulo"
   }
-}
-//OPERADOR TERNARIO
+  if (passExiste === undefined) {
+    passExiste = "nulo"
+  }
 
-//localStorage.length > 0 ? verifica() : limpia()
+  if (userExiste.User === userActual && passExiste.password === passActual) {
 
-//botones
-//login
+    localStorage.length > 0 ? verifica() : limpia()
 
-const login=document.getElementById('login')
-login.addEventListener('submit', async(e)=>{
-e.preventDefault()
+  } else {
 
-const registroFull = await fetch('https://sheet.best/api/sheets/99e8fa50-ec84-474d-b541-0b1cd4da8ddd')
-const registroFullJson = await registroFull.json()
-let userActual =login.Usuario.value
-let passActual =login.password.value
-let userExiste = registroFullJson.find(usuario => usuario.User === userActual)
-let passExiste = registroFullJson.find(usuario => usuario.password === passActual)
-usuarioActual =[]
-usuarioActual.push(userExiste.Nombres)
+    Swal.fire({
+      position: 'center',
+      icon: 'error',
+      title: 'El nombre de usuario o el email no corresponde.',
+      showConfirmButton: false,
+      timer: 1500
+    })
 
+  }
+})
 
-if (userExiste === undefined) {
-    userExiste ="nulo"
-}
-if (passExiste === undefined) {
-    passExiste ="nulo"
-}
+//BOTON DE REGISTRO
+const registro = document.getElementById('registro')
+registro.addEventListener('submit', async (e) => {
+  e.preventDefault()
 
+  const registroFull = await fetch('https://sheet.best/api/sheets/99e8fa50-ec84-474d-b541-0b1cd4da8ddd')
+  const registroFullJson = await registroFull.json()
+  let userActual = registro.Usuario.value
+  let mailActual = registro.email.value
+  let userExiste = registroFullJson.find(usuario => usuario.User === userActual)
+  let mailExiste = registroFullJson.find(usuario => usuario.email === mailActual)
 
-if (userExiste.User === userActual && passExiste.password === passActual) {
+  if (userExiste === undefined && mailExiste === undefined) {
 
-  localStorage.length > 0 ? verifica() : limpia()
+    await registra()
 
-/*    Swal.fire({
-        position: 'top-end',
-        icon: 'success',
-        title: 'Ingreso Correcto.',
+    Swal.fire({
+      position: 'top-end',
+      icon: 'success',
+      title: 'El registro ha sido un éxito.',
+      showConfirmButton: false,
+      timer: 1500
+    })
+    registro.reset()
+  } else {
+    if (userExiste !== undefined || mailExiste.email !== undefined) {
+
+      Swal.fire({
+        position: 'center',
+        icon: 'error',
+        title: 'El nombre de usuario o el email ya existe.',
         showConfirmButton: false,
         timer: 1500
       })
-*/
-      
 
     } else {
 
-                         Swal.fire({
-                    position: 'center',
-                    icon: 'error',
-                    title: 'El nombre de usuario o el email no corresponde.',
-                    showConfirmButton: false,
-                    timer: 1500
-                  })
-            
-                }
-}) 
-
-
-
-
-//REGISTRO
-function registra() {
-
-
-  const registroUser = fetch('https://sheet.best/api/sheets/99e8fa50-ec84-474d-b541-0b1cd4da8ddd',{
-      method:'POST',
-      mode:'cors',
-      headers:{
-          'Content-Type':'application/json'
-      },
-      body:JSON.stringify({
-          "User":	registro.Usuario.value,
-          "Nombres": registro.Nombres.value,
-          "Apellidos": registro.Apellidos.value,
-          "email": registro.email.value,
-          "password": registro.password.value
-      })
-  })
-
-}
-
-const registro=document.getElementById('registro')
-registro.addEventListener('submit', async(e)=>{
-e.preventDefault()
-
-const registroFull = await fetch('https://sheet.best/api/sheets/99e8fa50-ec84-474d-b541-0b1cd4da8ddd')
-const registroFullJson = await registroFull.json()
-let userActual =registro.Usuario.value
-let mailActual =registro.email.value
-let userExiste = registroFullJson.find(usuario => usuario.User === userActual)
-let mailExiste = registroFullJson.find(usuario => usuario.email === mailActual)
-
-
-if (userExiste === undefined && mailExiste === undefined) {
-
-await registra()
-
-    Swal.fire({
+      Swal.fire({
         position: 'top-end',
         icon: 'success',
         title: 'El registro ha sido un éxito.',
@@ -151,52 +107,27 @@ await registra()
         timer: 1500
       })
       registro.reset()
-    } else {
-if(userExiste !== undefined || mailExiste.email !== undefined) {
+    }
 
-Swal.fire({
-    position: 'center',
-    icon: 'error',
-    title: 'El nombre de usuario o el email ya existe.',
-    showConfirmButton: false,
-    timer: 1500
-  })
+  }
+})
 
-} else {
-
-
-
- Swal.fire({
-            position: 'top-end',
-            icon: 'success',
-            title: 'El registro ha sido un éxito.',
-            showConfirmButton: false,
-            timer: 1500
-          })
-          registro.reset()
-        }
-
-
-    }})
-
-
-
-//botón pagar
+//BOTON PAGAR
 const botonPagar = document.querySelector("#pagar")
 botonPagar.onclick = function () {
 //GENERA QR
   new QRious({
     element: document.querySelector("#codigo"),
-    value: `Ticket N° ${ticketN}`, // La URL o el texto
-    size: 100 ,
-    backgroundAlpha: 0, // 0 para fondo transparente
-    foreground: "#000000", // Color del QR
-    level: "H", // Puede ser L,M,Q y H (L es el de menor nivel, H el mayor)
+    value: `Ticket N° ${ticketN}`, 
+    size: 100,
+    backgroundAlpha: 0, 
+    foreground: "#000000", 
+    level: "H", 
   });
-  //CAPTURA SRC DEL QR PARA INCLUIRLO EN EL PDF
+//CAPTURA SRC DEL QR PARA INCLUIRLO EN EL PDF
   let base64 = document.querySelector('img').getAttribute('src');
   base.push(base64)
-  
+
   total()
   pagarPedido()
 }
@@ -220,7 +151,6 @@ function agregar1() {
 
 
   total()
-
   document.getElementById("suma").innerHTML = Intl.NumberFormat('es-CL', {
     minimumFractionDigits: 0
   }).format(sumaTotal[0])
@@ -494,6 +424,7 @@ function total() {
   totalValida = suma0[2] + suma1[2] + suma2[2] + suma3[2] + suma4[2] + suma5[2] + suma6[2]
   validador = []
   validador.push(Number(totalValida))
+  console.log(totales)
 
 }
 
@@ -507,7 +438,7 @@ function pagarPedido() {
       backdrop: `rgba(81,56,69,0.6)`,
       imageUrl: './imagenes/logoticket.png',
       title: `${usuarioActual}, tu pedido es por`,
-      text: `$ ${innerHTML = Intl.NumberFormat('es-CL', { minimumFractionDigits: 0 }).format(sumaTotal)} `,
+      title: `$ ${innerHTML = Intl.NumberFormat('es-CL', { minimumFractionDigits: 0 }).format(sumaTotal)} `,
       icon: 'warning',
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
@@ -678,7 +609,6 @@ function error1() {
 function pedioOld() {
   Swal.fire({
     title: `Hola ${usuarioActual}, ¿Quieres ver tu pedido anterior?`,
-    //title: `Hola nuevamente, ¿Quieres ver tu pedido anterior?`,
     showDenyButton: true,
     confirmButtonText: 'Si... quiero verlo.',
     denyButtonText: `No... pediré otra cosa.`,
@@ -694,7 +624,7 @@ function pedioOld() {
         timer: 1500
       })
 
-    login.reset()
+      login.reset()
 
       let recuDato0 = JSON.parse(localStorage.getItem("c0"))
       let valor0 = Number(`${recuDato0[1]}`)
@@ -764,7 +694,7 @@ function pedioOld() {
         const storageDatos = JSON.stringify(carroVacio)
         localStorage.setItem(`c${i}`, storageDatos)
       }
-      
+
       Swal.fire({
         position: 'center',
         icon: 'success',
@@ -772,9 +702,47 @@ function pedioOld() {
         showConfirmButton: false,
         timer: 1500
       })
-      
-      
+    } else {
+
+      limpia()
+
     }
+  })
+}
+
+
+//VERIFICA SI CARRO ESTA VACIO
+function verifica() {
+
+  pedioOld()
+  total()
+  document.getElementById("ticket").innerHTML = `  ${ticketN}`
+}
+//limpia carro
+function limpia() {
+
+  for (i = 0; i <= 10; i++) {
+    const storageDatos = JSON.stringify(carroVacio)
+    localStorage.setItem(`c${i}`, storageDatos)
+  }
+}
+
+//REGISTRO
+function registra() {
+
+  const registroUser = fetch('https://sheet.best/api/sheets/99e8fa50-ec84-474d-b541-0b1cd4da8ddd', {
+    method: 'POST',
+    mode: 'cors',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      "User": registro.Usuario.value,
+      "Nombres": registro.Nombres.value,
+      "Apellidos": registro.Apellidos.value,
+      "email": registro.email.value,
+      "password": registro.password.value
+    })
   })
 
 }
